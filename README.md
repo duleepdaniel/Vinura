@@ -1,3 +1,3 @@
 # Welcome to Vinura
 
-A [Medium]() Inspired Ruby on Rails Application
+A [Medium](https://medium.com/) Inspired Ruby on Rails Application
