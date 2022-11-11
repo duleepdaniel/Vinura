@@ -8,21 +8,21 @@ module SearchablePost
     after_commit :index_document, on: %i[create update]
     after_commit :delete_document, on: [:destroy]
 
-    settings INDEX_OPTIONS do
-      mappings dynamic: 'false' do
-        indexes :title, analyzer: 'autocomplete'
-        indexes :body, analyzer: 'english'
-        indexes :published_at
-        indexes :slug
-        indexes :tags do
-          indexes :name, analyzer: 'english'
-        end
-        indexes :user do
-          indexes :username, analyzer: 'english'
-          indexes :avatar_url
-        end
-      end
-    end
+    # settings INDEX_OPTIONS do
+    #   mappings dynamic: 'false' do
+    #     indexes :title, analyzer: 'autocomplete'
+    #     indexes :body, analyzer: 'english'
+    #     indexes :published_at
+    #     indexes :slug
+    #     indexes :tags do
+    #       indexes :name, analyzer: 'english'
+    #     end
+    #     indexes :user do
+    #       indexes :username, analyzer: 'english'
+    #       indexes :avatar_url
+    #     end
+    #   end
+    # end
 
     def self.search(term)
       __elasticsearch__.search(

@@ -8,12 +8,12 @@ module SearchableTag
     after_commit :index_document, on: %i[create update]
     after_commit :delete_document, on: [:destroy]
 
-    settings INDEX_OPTIONS do
-      mappings dynamic: 'false' do
-        indexes :name, analyzer: 'autocomplete'
-        indexes :slug
-      end
-    end
+    # settings INDEX_OPTIONS do
+    #   mappings dynamic: 'false' do
+    #     indexes :name, analyzer: 'autocomplete'
+    #     indexes :slug
+    #   end
+    # end
 
     def self.search(term)
       __elasticsearch__.search(

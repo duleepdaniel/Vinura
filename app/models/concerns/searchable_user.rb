@@ -8,14 +8,14 @@ module SearchableUser
     after_commit :index_document, on: %i[create update]
     after_commit :delete_document, on: [:destroy]
 
-    settings INDEX_OPTIONS do
-      mappings dynamic: 'false' do
-        indexes :username, analyzer: 'autocomplete'
-        indexes :email
-        indexes :avatar_url
-        indexes :slug
-      end
-    end
+    # settings INDEX_OPTIONS do
+    #   mappings dynamic: 'false' do
+    #     indexes :username, analyzer: 'autocomplete'
+    #     indexes :email
+    #     indexes :avatar_url
+    #     indexes :slug
+    #   end
+    # end
 
     def self.search(term)
       __elasticsearch__.search(
