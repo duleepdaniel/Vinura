@@ -1,8 +1,13 @@
-class API::Posts::LikesController < API::LikesController
+# frozen_string_literal: true
 
-  private
+module API
+  module Posts
+    class LikesController < API::LikesController
+      private
 
-    def set_likeable
-      @likeable = Post.find(params[:post_id])
+      def set_likeable
+        @likeable = Post.find(params[:post_id])
+      end
     end
+  end
 end

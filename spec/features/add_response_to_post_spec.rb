@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 # RSpec.feature "Add a response to a post" do
 #   let(:user) { create(:user, username: "Example User") }

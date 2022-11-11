@@ -10,7 +10,7 @@
 #
 
 class Interest < ActiveRecord::Base
-  belongs_to :follower, class_name: "User"
+  belongs_to :follower, class_name: 'User'
   belongs_to :tag
 
   validates :follower_id, presence: true

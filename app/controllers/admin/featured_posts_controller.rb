@@ -1,19 +1,23 @@
-class Admin::FeaturedPostsController < ApplicationController
-  before_action :authenticate_admin!
+# frozen_string_literal: true
 
-  def create
-    post.update(featured: true)
-    redirect_to post
-  end
+module Admin
+  class FeaturedPostsController < ApplicationController
+    before_action :authenticate_admin!
 
-  def destroy
-    post.update(featured: false)
-    redirect_to post
-  end
+    def create
+      post.update(featured: true)
+      redirect_to post
+    end
 
-  private
+    def destroy
+      post.update(featured: false)
+      redirect_to post
+    end
+
+    private
 
     def post
       @_post ||= Post.find(params[:post_id])
     end
+  end
 end

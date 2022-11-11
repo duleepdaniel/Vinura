@@ -1,32 +1,34 @@
-class Admin::SessionsController < Devise::SessionsController
-  before_action :redirect_loggedin_user, only: [:new]
-# before_filter :configure_sign_in_params, only: [:create]
+# frozen_string_literal: true
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+module Admin
+  class SessionsController < Devise::SessionsController
+    before_action :redirect_loggedin_user, only: [:new]
+    # before_filter :configure_sign_in_params, only: [:create]
 
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+    # GET /resource/sign_in
+    # def new
+    #   super
+    # end
 
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+    # POST /resource/sign_in
+    # def create
+    #   super
+    # end
 
-  protected
+    # DELETE /resource/sign_out
+    # def destroy
+    #   super
+    # end
+
+    protected
 
     def redirect_loggedin_user
-      if user_signed_in?
-        redirect_to root_path, alert: "Please sign out first"
-      end
+      redirect_to root_path, alert: 'Please sign out first' if user_signed_in?
     end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.for(:sign_in) << :attribute
-  # end
+    # If you have extra params to permit, append them to the sanitizer.
+    # def configure_sign_in_params
+    #   devise_parameter_sanitizer.for(:sign_in) << :attribute
+    # end
+  end
 end

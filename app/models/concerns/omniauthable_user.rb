@@ -7,12 +7,10 @@ module OmniauthableUser
     # prepending this string will not cause "email has already been taken" error.
     def self.find_or_create_from_facebook_omniauth(auth)
       user = where(provider: auth.provider, uid: auth.uid).first_or_create
-      unless auth.info.image.nil?
-        user.remote_avatar_url = auth.info.image.gsub('http://','https://') + '?type=large'
-      end
+      user.remote_avatar_url = auth.info.image.gsub('http://', 'https://') + '?type=large' unless auth.info.image.nil?
       user.update(
         email: "#{SecureRandom.hex}#{auth.info.email}",
-        password: Devise.friendly_token[0,20],
+        password: Devise.friendly_token[0, 20],
         username: auth.info.name
       )
       user
@@ -43,8 +41,8 @@ module OmniauthableUser
     end
 
     def self.new_with_session(params, session)
-      if session["devise.user_attributes"]
-        new(session["devise.user_attributes"]) do |user|
+      if session['devise.user_attributes']
+        new(session['devise.user_attributes']) do |user|
           user.attributes = params
           user.valid?
         end
@@ -52,16 +50,13 @@ module OmniauthableUser
         super
       end
     end
-
   end
 
-
   def password_required?
-    super && self.provider.blank?
+    super && provider.blank?
   end
 
   def email_required?
-    super && self.provider.blank?
+    super && provider.blank?
   end
-
 end

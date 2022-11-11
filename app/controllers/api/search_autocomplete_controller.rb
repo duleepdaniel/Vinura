@@ -1,8 +1,12 @@
-class API::SearchAutocompleteController < ApplicationController
-  def index
-    results = Elasticsearch::Model.search(params[:term], [Post, User, Tag])
-    @posts = results.select { |result| result["_type"] == 'post' }
-    @users = results.select { |result| result["_type"] == 'user' }
-    @tags  = results.select { |result| result["_type"] == 'tag' }
+# frozen_string_literal: true
+
+module API
+  class SearchAutocompleteController < ApplicationController
+    def index
+      results = Elasticsearch::Model.search(params[:term], [Post, User, Tag])
+      @posts = results.select { |result| result['_type'] == 'post' }
+      @users = results.select { |result| result['_type'] == 'user' }
+      @tags  = results.select { |result| result['_type'] == 'tag' }
+    end
   end
 end

@@ -8,6 +8,6 @@ class CreateBookmarks < ActiveRecord::Migration[5.2]
       t.timestamps null: false
     end
 
-    add_index :bookmarks, [:bookmarkable_type, :bookmarkable_id]
+    add_index :bookmarks, %i[bookmarkable_type bookmarkable_id]
   end
 end

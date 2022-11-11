@@ -1,19 +1,23 @@
-class Admin::FeaturedTagsController < ApplicationController
-  before_action :authenticate_admin!
+# frozen_string_literal: true
 
-  def create
-    tag.update(featured: true)
-    redirect_to tag
-  end
+module Admin
+  class FeaturedTagsController < ApplicationController
+    before_action :authenticate_admin!
 
-  def destroy
-    tag.update(featured: false)
-    redirect_to tag
-  end
+    def create
+      tag.update(featured: true)
+      redirect_to tag
+    end
 
-  protected
+    def destroy
+      tag.update(featured: false)
+      redirect_to tag
+    end
+
+    protected
 
     def tag
       @_tag ||= Tag.find(params[:tag_id])
     end
+  end
 end

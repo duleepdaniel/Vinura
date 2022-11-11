@@ -1,13 +1,17 @@
-class Admin::DashboardsController < ApplicationController
-  before_action :authenticate_admin!
+# frozen_string_literal: true
 
-  def show
-    @dashboard = Dashboard.new(posts: all_posts)
-  end
+module Admin
+  class DashboardsController < ApplicationController
+    before_action :authenticate_admin!
 
-  private
+    def show
+      @dashboard = Dashboard.new(posts: all_posts)
+    end
+
+    private
 
     def all_posts
       Post.published
     end
+  end
 end

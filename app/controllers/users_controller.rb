@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update]
-  before_action :authorize_user, only: [:edit, :update]
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: %i[edit update]
+  before_action :authorize_user, only: %i[edit update]
+  before_action :set_user, only: %i[show edit update]
 
   def show
     @followers_count = @user.followers.count
@@ -10,30 +12,27 @@ class UsersController < ApplicationController
     @recommended_posts = @user.liked_posts.latest(4).published.includes(:user)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
       redirect_to @user
     else
-      render :edit, alert: "Could not update, Please try again"
+      render :edit, alert: 'Could not update, Please try again'
     end
   end
 
   private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:description, :avatar, :location)
-    end
+  def user_params
+    params.require(:user).permit(:description, :avatar, :location)
+  end
 
-    def authorize_user
-      unless current_user.slug == params[:id]
-        redirect_to root_url
-      end
-    end
+  def authorize_user
+    redirect_to root_url unless current_user.slug == params[:id]
+  end
 end

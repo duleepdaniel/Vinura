@@ -5,7 +5,7 @@ module SearchablePost
     include Elasticsearch::Model
 
     # Sync up Elasticsearch with PostgreSQL.
-    after_commit :index_document, on: [:create, :update]
+    after_commit :index_document, on: %i[create update]
     after_commit :delete_document, on: [:destroy]
 
     settings INDEX_OPTIONS do
@@ -37,7 +37,7 @@ module SearchablePost
               },
               filter: {
                 exists: {
-                  field: "published_at"
+                  field: 'published_at'
                 }
               }
             }
@@ -47,43 +47,42 @@ module SearchablePost
     end
   end
 
-  def as_indexed_json(options = {})
-    self.as_json({
-      only: [:title, :body, :published_at, :slug],
-      include: {
-        user: {methods: [:avatar_url], only: [:username, :avatar_url] },
-        tags: { only: :name }
-      }
-    })
+  def as_indexed_json(_options = {})
+    as_json({
+              only: %i[title body published_at slug],
+              include: {
+                user: { methods: [:avatar_url], only: %i[username avatar_url] },
+                tags: { only: :name }
+              }
+            })
   end
 
   def index_document
-    ElasticsearchIndexJob.perform_later('index', 'Post', self.id) if self.published?
+    ElasticsearchIndexJob.perform_later('index', 'Post', id) if published?
   end
 
   def delete_document
-    ElasticsearchIndexJob.perform_later('delete', 'Post', self.id) if self.published?
+    ElasticsearchIndexJob.perform_later('delete', 'Post', id) if published?
   end
 
   INDEX_OPTIONS =
     { number_of_shards: 1, analysis: {
-    filter: {
-      "autocomplete_filter" => {
-        type: "edge_ngram",
-        min_gram: 1,
-        max_gram: 20
+      filter: {
+        'autocomplete_filter' => {
+          type: 'edge_ngram',
+          min_gram: 1,
+          max_gram: 20
+        }
+      },
+      analyzer: {
+        'autocomplete' => {
+          type: 'custom',
+          tokenizer: 'standard',
+          filter: %w[
+            lowercase
+            autocomplete_filter
+          ]
+        }
       }
-    },
-    analyzer: {
-      "autocomplete" => {
-        type: "custom",
-        tokenizer: "standard",
-        filter: [
-          "lowercase",
-          "autocomplete_filter"
-        ]
-      }
-    }
-  }
-  }
+    } }
 end

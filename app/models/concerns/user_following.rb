@@ -3,20 +3,21 @@ module UserFollowing
 
   included do
     # Followings
-    has_many :active_relationships, class_name: "Relationship",
-                                    foreign_key: "follower_id",
+    has_many :active_relationships, class_name: 'Relationship',
+                                    foreign_key: 'follower_id',
                                     dependent: :destroy
     has_many :following, through: :active_relationships, source: :followed
 
     # Followers
-    has_many :passive_relationships, class_name: "Relationship",
-                                     foreign_key: "followed_id",
+    has_many :passive_relationships, class_name: 'Relationship',
+                                     foreign_key: 'followed_id',
                                      dependent: :destroy
     has_many :followers, through: :passive_relationships, source: :follower
   end
 
   def follow(other_user)
-    return false if self.id == other_user.id
+    return false if id == other_user.id
+
     active_relationships.create(followed_id: other_user.id)
   end
 
@@ -29,6 +30,6 @@ module UserFollowing
   end
 
   def people_to_follow
-    User.where.not(id: following_ids + [self.id]).limit(25).order("RANDOM()")
+    User.where.not(id: following_ids + [id]).limit(25).shuffle
   end
 end

@@ -1,12 +1,11 @@
 module ApplicationHelper
-
   def follow_button_for(user)
     if user_signed_in?
       unless current_user?(user)
         react_component('UserFollowButton', { following: current_user.following?(user), followed_id: user.id })
       end
     else
-      react_component('UserFollowButton', { isSignedIn: false });
+      react_component('UserFollowButton', { isSignedIn: false })
     end
   end
 
@@ -14,7 +13,8 @@ module ApplicationHelper
     if user_signed_in?
       react_component('TagFollowButton', { following: current_user.following_tag?(tag), tag_id: tag.id })
     else
-      link_to "Follow", "", class: 'pull-right button green-border-button follow-button', data: { behavior: 'trigger-overlay' }
+      link_to 'Follow', '', class: 'pull-right button green-border-button follow-button',
+                            data: { behavior: 'trigger-overlay' }
     end
   end
 
@@ -35,10 +35,9 @@ module ApplicationHelper
   end
 
   def nav_link_to(text, url, options = {})
-    options[:class] ||= ""
-    options[:class] += " active" if current_page?(url)
+    options[:class] ||= ''
+    options[:class] += ' active' if current_page?(url)
     options[:class].strip!
     link_to text, url, options
   end
-
 end

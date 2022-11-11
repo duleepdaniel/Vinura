@@ -1,5 +1,4 @@
 class GenerateLeadForPublishedPosts < ActiveRecord::Migration[5.2]
-
   def change
     reversible do |dir|
       dir.up do
@@ -9,7 +8,7 @@ class GenerateLeadForPublishedPosts < ActiveRecord::Migration[5.2]
         end
       end
 
-      dir.down{ raise ActiveRecord::IrreversibleMigration }
+      dir.down { raise ActiveRecord::IrreversibleMigration }
     end
   end
 end

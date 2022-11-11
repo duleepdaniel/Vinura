@@ -9,6 +9,6 @@ class CreateInterests < ActiveRecord::Migration[5.2]
 
     add_index :interests, :follower_id
     add_index :interests, :tag_id
-    add_index :interests, [:follower_id, :tag_id], unique: true
+    add_index :interests, %i[follower_id tag_id], unique: true
   end
 end

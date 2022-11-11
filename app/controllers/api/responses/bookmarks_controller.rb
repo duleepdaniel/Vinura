@@ -1,8 +1,13 @@
-class API::Responses::BookmarksController < API::BookmarksController
+# frozen_string_literal: true
 
-  private
+module API
+  module Responses
+    class BookmarksController < API::BookmarksController
+      private
 
-    def set_bookmarkable
-      @bookmarkable = Response.find(params[:response_id])
+      def set_bookmarkable
+        @bookmarkable = Response.find(params[:response_id])
+      end
     end
+  end
 end

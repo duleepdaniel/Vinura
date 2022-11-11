@@ -29,19 +29,19 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook, :twitter, :google_oauth2]
+         :omniauthable, omniauth_providers: %i[facebook twitter google_oauth2]
   validates :username, presence: true
   validate :avatar_image_size
 
   has_many :posts, dependent: :destroy
   has_many :responses, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :liked_posts, through: :likes, source: :likeable, source_type: "Post"
-  has_many :liked_responses, through: :likes, source: :likeable, source_type: "Response"
+  has_many :liked_posts, through: :likes, source: :likeable, source_type: 'Post'
+  has_many :liked_responses, through: :likes, source: :likeable, source_type: 'Response'
 
   has_many :bookmarks, dependent: :destroy
-  has_many :bookmarked_posts, through: :bookmarks, source: :bookmarkable, source_type: "Post"
-  has_many :bookmarked_responses, through: :bookmarks, source: :bookmarkable, source_type: "Response"
+  has_many :bookmarked_posts, through: :bookmarks, source: :bookmarkable, source_type: 'Post'
+  has_many :bookmarked_responses, through: :bookmarks, source: :bookmarkable, source_type: 'Response'
 
   has_many :notifications, dependent: :destroy, foreign_key: :recipient_id
 
@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   include OmniauthableUser
 
   extend FriendlyId
-  friendly_id :username, use: [ :slugged, :finders ]
+  friendly_id :username, use: %i[slugged finders]
 
   def add_like_to(likeable_obj)
     likes.where(likeable: likeable_obj).first_or_create
@@ -84,24 +84,22 @@ class User < ActiveRecord::Base
 
   private
 
-    # Validates the size on an uploaded image.
-    def avatar_image_size
-      if avatar.size > 5.megabytes
-        errors.add(:avatar, "should be less than 5MB")
-      end
-    end
+  # Validates the size on an uploaded image.
+  def avatar_image_size
+    errors.add(:avatar, 'should be less than 5MB') if avatar.size > 5.megabytes
+  end
 
-    # Returns a string of the objects class name downcased.
-    def downcased_class_name(obj)
-      obj.class.to_s.downcase
-    end
+  # Returns a string of the objects class name downcased.
+  def downcased_class_name(obj)
+    obj.class.to_s.downcase
+  end
 
-    # Clears notifications where deleted user is the actor.
-    def clear_notifications
-      Notification.where(actor_id: self.id).destroy_all
-    end
+  # Clears notifications where deleted user is the actor.
+  def clear_notifications
+    Notification.where(actor_id: id).destroy_all
+  end
 
-    def send_welcome_email
-      WelcomeEmailJob.perform_later(self.id)
-    end
+  def send_welcome_email
+    WelcomeEmailJob.perform_later(id)
+  end
 end

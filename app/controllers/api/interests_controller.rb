@@ -1,22 +1,26 @@
-class API::InterestsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_tag
+# frozen_string_literal: true
 
-  # Follow a tag.
-  def create
-    current_user.follow_tag(@tag)
-    head status: 200
-  end
+module API
+  class InterestsController < ApplicationController
+    before_action :authenticate_user!
+    before_action :set_tag
 
-  # Unfollow a tag.
-  def destroy
-    current_user.unfollow_tag(@tag)
-    head status: 200
-  end
+    # Follow a tag.
+    def create
+      current_user.follow_tag(@tag)
+      head status: 200
+    end
 
-  private
+    # Unfollow a tag.
+    def destroy
+      current_user.unfollow_tag(@tag)
+      head status: 200
+    end
+
+    private
 
     def set_tag
       @tag = Tag.find(params[:tag_id])
     end
+  end
 end

@@ -1,7 +1,11 @@
-class API::FollowingTagsController < ApplicationController
-  before_action :authenticate_user!
+# frozen_string_literal: true
 
-  def index
-    @tags = current_user.following_tags
+module API
+  class FollowingTagsController < ApplicationController
+    before_action :authenticate_user!
+
+    def index
+      @tags = current_user.following_tags
+    end
   end
 end

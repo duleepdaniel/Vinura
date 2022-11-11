@@ -10,6 +10,6 @@ class CreateTagRelationships < ActiveRecord::Migration[5.2]
 
     add_index :tag_relationships, :tag_id
     add_index :tag_relationships, :related_tag_id
-    add_index :tag_relationships, [:tag_id, :related_tag_id], unique: true
+    add_index :tag_relationships, %i[tag_id related_tag_id], unique: true
   end
 end

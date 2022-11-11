@@ -1,6 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
-#RSpec.describe DigestMailer, type: :mailer do
+# RSpec.describe DigestMailer, type: :mailer do
 #  describe "daily_email" do
 #    let(:mail) { DigestMailer.daily_email }
 #
@@ -15,4 +15,4 @@ require "rails_helper"
 #    end
 #  end
 #
-#end
+# end

@@ -18,10 +18,10 @@ FactoryGirl.define do
   factory :notification do
     recipient_id 1
     actor_id 2
-    action "responded to your"
+    action 'responded to your'
     read_at nil
     notifiable_id 1
-    notifiable_type "Post"
+    notifiable_type 'Post'
     is_new true
 
     factory :touched_notification do

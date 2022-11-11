@@ -18,7 +18,6 @@
 #
 
 class Post < ActiveRecord::Base
-
   validates :title, :body, :user_id, presence: true
 
   belongs_to :user
@@ -50,10 +49,10 @@ class Post < ActiveRecord::Base
   include SearchablePost
 
   extend FriendlyId
-  friendly_id :title, use: [ :slugged, :history, :finders ]
+  friendly_id :title, use: %i[slugged history finders]
 
   def self.new_draft_for(user)
-    post = self.new(user_id: user.id)
+    post = new(user_id: user.id)
     post.save_as_draft
     post
   end
@@ -63,19 +62,19 @@ class Post < ActiveRecord::Base
   end
 
   def related_posts(size: 3)
-    Post.joins(:taggings).where.not(id: self.id).where(taggings: { tag_id: self.tag_ids }).distinct.
-      published.limit(size).includes(:user)
+    Post.joins(:taggings).where.not(id: id).where(taggings: { tag_id: tag_ids }).distinct
+        .published.limit(size).includes(:user)
   end
 
   def all_tags=(names)
-    self.tags = names.split(",").map do |name|
+    self.tags = names.split(',').map do |name|
       Tag.first_or_create_with_name!(name)
     end
-    RelatedTagsCreator.create(self.tag_ids)
+    RelatedTagsCreator.create(tag_ids)
   end
 
   def all_tags
-    tags.map(&:name).join(", ")
+    tags.map(&:name).join(', ')
   end
 
   def publish
@@ -109,8 +108,8 @@ class Post < ActiveRecord::Base
   # Generate a lead which appears in post panel.
   # FIXME: this method needs refactoring or completely different approach
   def generate_lead!
-    if self.published?
-      post_body = Nokogiri::HTML::Document.parse(self.body)
+    if published?
+      post_body = Nokogiri::HTML::Document.parse(body)
       if post_body.css('h2').size > 0
         self.lead = post_body.css('h2')[0].to_s
       elsif post_body.css('h3').size > 0
@@ -120,5 +119,4 @@ class Post < ActiveRecord::Base
       end
     end
   end
-
 end

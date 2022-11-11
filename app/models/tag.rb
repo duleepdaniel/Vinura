@@ -26,7 +26,7 @@ class Tag < ActiveRecord::Base
   include SearchableTag
 
   extend FriendlyId
-  friendly_id :name, use: [ :slugged, :finders ]
+  friendly_id :name, use: %i[slugged finders]
 
   def self.first_or_create_with_name!(name)
     where(lowercase_name: name.strip.downcase).first_or_create! do |tag|

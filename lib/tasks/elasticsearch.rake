@@ -1,9 +1,13 @@
 namespace :elasticsearch do
   desc 'reindex Elasticsearch for all searchable models'
-  task :reindex => :environment do
+  task reindex: :environment do
     [User, Post, Tag].each do |klass|
       # Delete the previous index in Elasticsearch
-      klass.__elasticsearch__.client.indices.delete index: klass.index_name rescue nil
+      begin
+        klass.__elasticsearch__.client.indices.delete index: klass.index_name
+      rescue StandardError
+        nil
+      end
 
       # Create the new index with the new mapping
       klass.__elasticsearch__.client.indices.create \
@@ -17,6 +21,5 @@ namespace :elasticsearch do
         klass.import
       end
     end
-
   end
 end

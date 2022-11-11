@@ -2,7 +2,7 @@ module TagFollowing
   extend ActiveSupport::Concern
 
   included do
-    has_many :interests, foreign_key: "follower_id",
+    has_many :interests, foreign_key: 'follower_id',
                          dependent: :destroy
     has_many :following_tags, through: :interests, source: :tag
   end
@@ -18,5 +18,4 @@ module TagFollowing
   def following_tag?(tag)
     following_tag_ids.include?(tag.id)
   end
-
 end

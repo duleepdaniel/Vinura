@@ -27,62 +27,66 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "validations" do
-    it "requires a username" do
+  describe 'validations' do
+    it 'requires a username' do
       user = build(:user, username: nil)
       expect(user).not_to be_valid
     end
 
-    #it "requires avatar image to be less than 5MB in size" do
+    # it "requires avatar image to be less than 5MB in size" do
     #  uploaded_image = double('avatar image', size: 6.megabytes)
     #  user = build(:user, avatar: uploaded_image)
     #  user.valid?
     #  expect(user.errors[:avatar]).to include('should be less than 5MB')
-    #end
+    # end
   end
 
-  describe "relationships between users" do
-    let(:luke) { create(:user, username: "Luke Skywalker") }
-    let(:solo) { create(:user, username: "Han Solo") }
+  describe 'relationships between users' do
+    let(:dutch) { create(:user, username: 'Dutch Van Derlin') }
+    let(:arthur) { create(:user, username: 'Arthur Morgan') }
 
-    it "can follow and unfollow other users" do
-      expect(luke).not_to be_following(solo)
+    it 'can follow and unfollow other users' do
+      expect(dutch).not_to be_following(arthur)
 
-      luke.follow(solo)
-      expect(luke).to be_following(solo)
-      expect(solo.followers).to include(luke)
+      dutch.follow(arthur)
+      dutch.reload
+      expect(dutch).to be_following(arthur)
+      expect(arthur.followers).to include(dutch)
 
-      luke.unfollow(solo)
-      expect(luke).not_to be_following(solo)
-      expect(solo.followers).not_to include(luke)
+      dutch.unfollow(arthur)
+      dutch.reload
+      expect(dutch).not_to be_following(arthur)
+      expect(arthur.followers).not_to include(dutch)
     end
 
-    it "returns false when asked whether a user is following self" do
-      expect(luke.following?(luke)).to be_falsy
+    it 'returns false when asked whether a user is following self' do
+      expect(dutch.following?(dutch)).to be_falsy
     end
 
-    it "does not allow to follow self" do
-      expect { luke.follow(luke) }.not_to change { Relationship.count }
-      expect(luke.follow(luke)).to be_falsy
+    it 'does not allow to follow self' do
+      expect { dutch.follow(dutch) }.not_to change { Relationship.count }
+      expect(dutch.follow(dutch)).to be_falsy
     end
   end
 
-  describe "user interests" do
+  describe 'user interests' do
     let(:user) { create(:user) }
-    let(:music_tag) { Tag.create(name: "Music") }
+    let(:music_tag) { Tag.create(name: 'Music') }
 
-    it "can follow and unfollow a tag" do
+    it 'can follow and unfollow a tag' do
       expect(user).not_to be_following_tag(music_tag)
 
       user.follow_tag(music_tag)
+      user.reload
       expect(user).to be_following_tag(music_tag)
 
       user.unfollow_tag(music_tag)
+      user.reload
       expect(user).not_to be_following_tag(music_tag)
     end
   end
 
-  describe "adding likes" do
+  describe 'adding likes' do
     let(:user) { create(:user) }
     let(:post) { create(:post) }
     let(:response) { build(:response) }
@@ -90,24 +94,28 @@ RSpec.describe User, type: :model do
       post.responses << response
     end
 
-    it "can like and unlike a post" do
+    it 'can like and unlike a post' do
       user.add_like_to(post)
+      user.reload
       expect(user.liked?(post)).to be_truthy
 
       user.remove_like_from(post)
+      user.reload
       expect(user.liked?(post)).to be_falsy
     end
 
-    it "can like and unlike a response" do
+    it 'can like and unlike a response' do
       user.add_like_to(response)
+      user.reload
       expect(user.liked?(response)).to be_truthy
 
       user.remove_like_from(response)
+      user.reload
       expect(user.liked?(response)).to be_falsy
     end
   end
 
-  describe "adding bookmarks" do
+  describe 'adding bookmarks' do
     let(:user) { create(:user) }
     let(:post) { create(:post) }
     let(:response) { build(:response) }
@@ -115,28 +123,24 @@ RSpec.describe User, type: :model do
       post.responses << response
     end
 
-    it "can bookmark and unbookmark a post" do
+    it 'can bookmark and unbookmark a post' do
       user.add_bookmark_to(post)
+      user.reload
       expect(user.bookmarked?(post)).to be_truthy
 
       user.remove_bookmark_from(post)
+      user.reload
       expect(user.bookmarked?(post)).to be_falsy
     end
 
-    it "can bookmark and unbookmark a response" do
+    it 'can bookmark and unbookmark a response' do
       user.add_bookmark_to(response)
+      user.reload
       expect(user.bookmarked?(response)).to be_truthy
 
       user.remove_bookmark_from(response)
+      user.reload
       expect(user.bookmarked?(response)).to be_falsy
     end
-  end
-
-  # TODO: this is a temporary implemention, change this when the number of user
-  # grows.
-  describe "#people_to_folow" do
-    let(:user) { create(:user) }
-
-    it "gets upto 25 users not including self"
   end
 end
