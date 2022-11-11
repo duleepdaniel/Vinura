@@ -1,4 +1,3 @@
-
 module API
   class FollowingTagsController < ApplicationController
     before_action :authenticate_user!

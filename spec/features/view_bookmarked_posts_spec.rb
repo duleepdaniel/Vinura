@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 RSpec.feature 'Viewing bookmarked posts' do

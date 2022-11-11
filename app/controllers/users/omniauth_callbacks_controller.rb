@@ -1,4 +1,3 @@
-
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # userful debugging code, insert the following to see the response from oauth

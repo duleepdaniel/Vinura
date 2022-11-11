@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 # RSpec.feature "Add a response to a post" do

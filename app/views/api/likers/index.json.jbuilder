@@ -1,4 +1,3 @@
-
 json.array! @likers do |liker|
   json.id liker.id
   json.username liker.username

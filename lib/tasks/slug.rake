@@ -1,4 +1,3 @@
-
 namespace :slug do
   desc 'regenerate slug for sluggable models'
   task regenerate: :environment do

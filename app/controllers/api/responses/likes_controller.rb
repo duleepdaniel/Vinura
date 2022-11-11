@@ -1,4 +1,3 @@
-
 module API
   module Responses
     class LikesController < API::LikesController

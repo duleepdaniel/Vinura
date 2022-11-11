@@ -1,4 +1,3 @@
-
 module API
   module Posts
     class BookmarksController < API::BookmarksController

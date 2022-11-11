@@ -1,4 +1,3 @@
-
 module API
   module Responses
     class BookmarksController < API::BookmarksController

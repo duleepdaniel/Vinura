@@ -1,4 +1,3 @@
-
 module PostsHelper
   def post_length_in_minutes(body)
     min = body.split(' ').size / 250

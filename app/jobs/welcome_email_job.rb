@@ -1,4 +1,3 @@
-
 class WelcomeEmailJob < ActiveJob::Base
   queue_as :mailer
 

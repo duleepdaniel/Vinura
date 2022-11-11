@@ -1,4 +1,3 @@
-
 json.posts do |json|
   json.array! @posts do |post|
     json.id post.id

@@ -1,4 +1,3 @@
-
 class SetPublishedAtForExistingPosts < ActiveRecord::Migration[5.2]
   class Post < ActiveRecord::Base
   end

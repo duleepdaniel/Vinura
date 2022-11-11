@@ -1,4 +1,3 @@
-
 class DigestMailer < ApplicationMailer
   add_template_helper(UsersHelper)
   add_template_helper(PostsHelper)

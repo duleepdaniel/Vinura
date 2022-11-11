@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 RSpec.feature 'Bookmarking a post' do

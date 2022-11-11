@@ -1,4 +1,3 @@
-
 module API
   class InterestsController < ApplicationController
     before_action :authenticate_user!

@@ -1,4 +1,3 @@
-
 module API
   class SearchAutocompleteController < ApplicationController
     def index

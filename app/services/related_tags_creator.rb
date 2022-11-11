@@ -1,4 +1,3 @@
-
 class RelatedTagsCreator
   def self.create(tag_ids)
     id_permutation = tag_ids.repeated_permutation(2).reject { |ids| ids[0] == ids[1] }

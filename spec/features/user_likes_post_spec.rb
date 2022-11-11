@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 RSpec.feature 'Liking a post' do

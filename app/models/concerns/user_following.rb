@@ -1,4 +1,3 @@
-
 module UserFollowing
   extend ActiveSupport::Concern
 

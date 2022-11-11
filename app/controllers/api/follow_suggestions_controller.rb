@@ -1,4 +1,3 @@
-
 module API
   class FollowSuggestionsController < ApplicationController
     before_action :authenticate_user!

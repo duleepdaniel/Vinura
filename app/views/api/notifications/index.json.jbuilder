@@ -1,4 +1,3 @@
-
 json.new_notification_count @new_notification_count
 json.next_page @notifications.next_page
 json.notifications do |json|

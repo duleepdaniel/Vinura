@@ -1,4 +1,3 @@
-
 # This controller serves as a parent controller for other likes_controllers.
 # Posts::LikesController for example.
 # Child controller that inherit from this LikesController should implement

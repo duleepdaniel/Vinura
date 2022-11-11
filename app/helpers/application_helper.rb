@@ -1,4 +1,3 @@
-
 module ApplicationHelper
   def follow_button_for(user)
     if user_signed_in?

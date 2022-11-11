@@ -1,4 +1,3 @@
-
 # This controller serves as a base controller for other bookmarks_controllers.
 # Posts::BookmarksController for example.
 # Child controller that inherit from this BookmarksController should implement

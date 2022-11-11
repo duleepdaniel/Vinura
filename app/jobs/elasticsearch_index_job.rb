@@ -1,4 +1,3 @@
-
 class ElasticsearchIndexJob < ActiveJob::Base
   queue_as :elasticsearch
 

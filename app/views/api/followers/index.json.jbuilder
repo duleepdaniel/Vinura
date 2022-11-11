@@ -1,4 +1,3 @@
-
 json.array! @followers do |follower|
   json.id follower.id
   json.username follower.username

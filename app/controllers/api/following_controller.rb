@@ -1,4 +1,3 @@
-
 module API
   class FollowingController < ApplicationController
     def index

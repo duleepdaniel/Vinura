@@ -1,4 +1,3 @@
-
 require 'carrierwave/orm/activerecord'
 
 if Rails.env.production?

@@ -1,4 +1,3 @@
-
 require 'rspec/expectations'
 
 RSpec::Matchers.define :be_following do |other_user|

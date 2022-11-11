@@ -1,4 +1,3 @@
-
 class TagsController < ApplicationController
   before_action :set_tag
   def show

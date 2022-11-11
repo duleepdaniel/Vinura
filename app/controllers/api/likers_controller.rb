@@ -1,4 +1,3 @@
-
 module API
   class LikersController < ApplicationController
     before_action :authenticate_user!

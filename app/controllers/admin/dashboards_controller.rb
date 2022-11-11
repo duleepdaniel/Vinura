@@ -1,4 +1,3 @@
-
 module Admin
   class DashboardsController < ApplicationController
     before_action :authenticate_admin!

@@ -1,4 +1,3 @@
-
 module Admin
   class FeaturedTagsController < ApplicationController
     before_action :authenticate_admin!

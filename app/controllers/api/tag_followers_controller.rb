@@ -1,4 +1,3 @@
-
 module API
   class TagFollowersController < ApplicationController
     def index

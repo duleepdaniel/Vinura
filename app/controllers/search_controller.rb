@@ -1,4 +1,3 @@
-
 class SearchController < ApplicationController
   before_action :beautify_url
   layout 'simple'

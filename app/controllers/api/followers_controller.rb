@@ -1,4 +1,3 @@
-
 module API
   class FollowersController < ApplicationController
     def index

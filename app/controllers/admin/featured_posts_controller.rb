@@ -1,4 +1,3 @@
-
 module Admin
   class FeaturedPostsController < ApplicationController
     before_action :authenticate_admin!

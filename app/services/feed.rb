@@ -1,4 +1,3 @@
-
 class Feed
   attr_reader :user
 

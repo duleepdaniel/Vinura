@@ -1,4 +1,3 @@
-
 class PostDecorator < DelegateClass(Post)
   def initialize(post, current_user)
     super(post)

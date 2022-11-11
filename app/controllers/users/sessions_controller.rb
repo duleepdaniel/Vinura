@@ -1,4 +1,3 @@
-
 module Users
   class SessionsController < Devise::SessionsController
     before_action :redirect_admin_user, only: [:new]

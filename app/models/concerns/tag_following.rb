@@ -1,4 +1,3 @@
-
 module TagFollowing
   extend ActiveSupport::Concern
 
