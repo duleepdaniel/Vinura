@@ -1,2 +1,12 @@
 Style/FrozenStringLiteralComment:
   Enabled: false
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 60
+Metrics/MethodLength:
+  Max: 15
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false

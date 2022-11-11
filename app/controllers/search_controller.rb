@@ -16,13 +16,13 @@ class SearchController < ApplicationController
   private
 
   def beautify_url
-    if params[:search].present?
-      case params[:action]
-      when 'show'
-        redirect_to search_url(q: params[:search][:q])
-      when 'users'
-        redirect_to search_users_url(q: params[:search][:q])
-      end
+    return unless params[:search].present?
+
+    case params[:action]
+    when 'show'
+      redirect_to search_url(q: params[:search][:q])
+    when 'users'
+      redirect_to search_users_url(q: params[:search][:q])
     end
   end
 

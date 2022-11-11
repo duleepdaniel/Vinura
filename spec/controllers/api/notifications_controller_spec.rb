@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe API::NotificationsController, js: true do
-  let(:luke) { create(:user, username: 'Luke') }
-  let(:solo) { create(:user, username: 'Solo') }
-  let(:lukes_post1) { create(:post, user: luke) }
-  let(:lukes_post2) { create(:post, user: luke) }
+  let(:arthur) { create(:user, username: 'arthur') }
+  let(:dutch) { create(:user, username: 'dutch') }
+  let(:arthurs_post1) { create(:post, user: arthur) }
+  let(:arthurs_post2) { create(:post, user: arthur) }
 
   describe 'POST #mark_as_touched' do
     before :each do
-      @notification = Notification.create(recipient: solo,
-                                          actor: luke,
+      @notification = Notification.create(recipient: dutch,
+                                          actor: arthur,
                                           action: 'liked your',
-                                          notifiable: lukes_post1,
+                                          notifiable: arthurs_post1,
                                           is_new: true)
-      login solo
+      login dutch
     end
 
     it 'sets is_new field to false' do
@@ -25,18 +25,18 @@ RSpec.describe API::NotificationsController, js: true do
 
   describe 'POST #mark_as_read' do
     before :each do
-      @notification1 = Notification.create(recipient: solo,
-                                           actor: luke,
+      @notification1 = Notification.create(recipient: dutch,
+                                           actor: arthur,
                                            action: 'liked your',
-                                           notifiable: lukes_post1,
+                                           notifiable: arthurs_post1,
                                            is_new: true)
 
-      @notification2 = Notification.create(recipient: solo,
-                                           actor: luke,
+      @notification2 = Notification.create(recipient: dutch,
+                                           actor: arthur,
                                            action: 'liked your',
-                                           notifiable: lukes_post2,
+                                           notifiable: arthurs_post2,
                                            is_new: true)
-      login solo
+      login dutch
     end
 
     it 'sets read_at timestamp' do
@@ -50,18 +50,18 @@ RSpec.describe API::NotificationsController, js: true do
 
   describe 'POST #mark_all_as_read' do
     before :each do
-      @notification1 = Notification.create(recipient: solo,
-                                           actor: luke,
+      @notification1 = Notification.create(recipient: dutch,
+                                           actor: arthur,
                                            action: 'liked your',
-                                           notifiable: lukes_post1,
+                                           notifiable: arthurs_post1,
                                            is_new: true)
 
-      @notification2 = Notification.create(recipient: solo,
-                                           actor: luke,
+      @notification2 = Notification.create(recipient: dutch,
+                                           actor: arthur,
                                            action: 'liked your',
-                                           notifiable: lukes_post2,
+                                           notifiable: arthurs_post2,
                                            is_new: true)
-      login solo
+      login dutch
     end
 
     it 'sets read_at timestamp' do

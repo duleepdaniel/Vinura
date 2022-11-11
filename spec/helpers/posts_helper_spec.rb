@@ -23,13 +23,17 @@ RSpec.describe PostsHelper do
     end
 
     it 'removes multiple script tag pairs' do
-      html_with_script_tags = "<p>Hello world</p><script>alert('XSS');</script><h2>Hi</h2><script>alert('security')</script>"
+      html_with_script_tags = <<-SCRIPT
+      <p>Hello world</p><script>alert('XSS');</script><h2>Hi</h2><script>alert('security')</script>
+      SCRIPT
       output = helper.remove_javascript(html_with_script_tags)
       expect(output).to eq("<p>Hello world</p>alert('XSS');<h2>Hi</h2>alert('security')")
     end
 
     it 'removes javascript in href' do
-      html_with_xss = "<a href='javascript:alert('XSS')'>Click me</a><br/><div onmouseover='alert('security hole!')'>some content</div>"
+      html_with_xss = <<-SCRIPT
+      <a href='javascript:alert('XSS')'>Click me</a><br/><div onmouseover='alert('security hole!')'>some content</div>
+      SCRIPT
       output = helper.remove_javascript(html_with_xss)
       expect(output).to eq("<a href='alert('XSS')'>Click me</a><br/><div 'alert('security hole!')'>some content</div>")
     end
@@ -43,13 +47,17 @@ RSpec.describe PostsHelper do
     end
 
     it 'removes multiple script tag pairs' do
-      html_with_script_tags = "<p>Hello world</p><script>alert('XSS');</script><h2>Hi</h2><script>alert('security')</script>"
+      html_with_script_tags = <<~SCRIPT
+        <p>Hello world</p><script>alert('XSS');</script><h2>Hi</h2><script>alert('security')</script>
+      SCRIPT
       output = helper.sanitize_html(html_with_script_tags)
       expect(output).to eq("<p>Hello world</p>alert('XSS');<h2>Hi</h2>alert('security')")
     end
 
     it 'removes javascript in href' do
-      html_with_xss = "<a href='javascript:alert('XSS')'>Click me</a><br/><div onmouseover='alert('security hole!')'>some content</div>"
+      html_with_xss = <<~SCRIPT
+        <a href='javascript:alert('XSS')'>Click me</a><br/><div onmouseover='alert('security hole!')'>some content</div>
+      SCRIPT
       output = helper.sanitize_html(html_with_xss)
       expect(output).to eq('<a>Click me</a><br><div>some content</div>')
     end

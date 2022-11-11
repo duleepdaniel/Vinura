@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.feature 'Viewing bookmarked posts' do
   let(:user) { create(:user) }
-  let!(:post_1) { create(:post, title: 'Interesting post') }
-  let!(:post_2) { create(:post, title: 'Not so interesting post') }
+  let!(:post1) { create(:post, title: 'Interesting post') }
+  let!(:post2) { create(:post, title: 'Not so interesting post') }
 
   background do
-    user.add_bookmark_to(post_1)
+    user.add_bookmark_to(post1)
   end
 
   scenario 'Signed in user can view his/hew bookmarked post in bookmark page' do

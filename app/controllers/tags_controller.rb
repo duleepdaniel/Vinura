@@ -12,6 +12,7 @@ class TagsController < ApplicationController
   end
 
   def tagged_posts
-    @_tagged_posts ||= Post.tagged_with(@tag.name).published.includes(:user).paginate(page: params[:page]).order(created_at: :desc)
+    @_tagged_posts ||= Post.tagged_with(@tag.name).published.includes(:user)
+                           .paginate(page: params[:page]).order(created_at: :desc)
   end
 end

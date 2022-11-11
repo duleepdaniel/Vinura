@@ -64,7 +64,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'does not allow to follow self' do
-      expect { dutch.follow(dutch) }.not_to change { Relationship.count }
+      expect { dutch.follow(dutch) }.not_to change(Relationship.count)
       expect(dutch.follow(dutch)).to be_falsy
     end
   end

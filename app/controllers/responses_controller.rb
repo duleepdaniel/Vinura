@@ -23,9 +23,9 @@ class ResponsesController < ApplicationController
       Notification.create(recipient: user, actor: current_user, action: 'also commented on a', notifiable: @post,
                           is_new: true)
     end
-    unless current_user?(@post.user) || @post.responders.include?(@post.user)
-      Notification.create(recipient: @post.user, actor: current_user, action: 'responded to your', notifiable: @post,
-                          is_new: true)
+    return if current_user?(@post.user) || @post.responders.include?(@post.user)
+    Notification.create(recipient: @post.user, actor: current_user, action: 'responded to your', notifiable: @post,
+                        is_new: true)
     end
   end
 end
