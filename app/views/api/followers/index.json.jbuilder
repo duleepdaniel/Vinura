@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 json.array! @followers do |follower|
   json.id follower.id

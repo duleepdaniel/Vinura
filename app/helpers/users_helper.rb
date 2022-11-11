@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 module UsersHelper
   def avatar_for(user, options = { size: 80 })

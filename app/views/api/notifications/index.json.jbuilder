@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 json.new_notification_count @new_notification_count
 json.next_page @notifications.next_page

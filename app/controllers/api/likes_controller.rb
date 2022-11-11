@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 # This controller serves as a parent controller for other likes_controllers.
 # Posts::LikesController for example.

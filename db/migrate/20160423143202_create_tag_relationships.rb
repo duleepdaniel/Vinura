@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class CreateTagRelationships < ActiveRecord::Migration[5.2]
   def change

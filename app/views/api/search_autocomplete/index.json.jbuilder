@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 json.posts do |json|
   json.array! @posts do |post|

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 module Features
   def sign_in(user)

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 module PostsHelper
   def post_length_in_minutes(body)

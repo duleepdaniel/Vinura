@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 # This controller serves as a base controller for other bookmarks_controllers.
 # Posts::BookmarksController for example.

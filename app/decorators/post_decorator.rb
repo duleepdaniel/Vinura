@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class PostDecorator < DelegateClass(Post)
   def initialize(post, current_user)

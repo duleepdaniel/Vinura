@@ -644,8 +644,8 @@ DEPENDENCIES
   dalli (~> 2.7)
   database_cleaner
   devise
-  elasticsearch-model (~> 0.1.8)
-  elasticsearch-rails (~> 0.1.8)
+  elasticsearch-model
+  elasticsearch-rails
   factory_girl_rails (~> 4.5.0)
   faker (~> 1.6.1)
   fog

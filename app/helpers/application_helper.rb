@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 module ApplicationHelper
   def follow_button_for(user)

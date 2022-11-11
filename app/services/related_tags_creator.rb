@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class RelatedTagsCreator
   def self.create(tag_ids)

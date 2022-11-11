@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 source 'https://rubygems.org'
 ruby '2.6.6'
@@ -40,8 +39,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '~> 3.1'
 
 # Elasticsearch
-gem 'elasticsearch-model', '~> 0.1.8'
-gem 'elasticsearch-rails', '~> 0.1.8'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 # Background Job
 gem 'sidekiq', '~> 4.0'

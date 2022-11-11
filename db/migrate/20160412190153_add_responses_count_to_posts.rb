@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class AddResponsesCountToPosts < ActiveRecord::Migration[5.2]
   def up
