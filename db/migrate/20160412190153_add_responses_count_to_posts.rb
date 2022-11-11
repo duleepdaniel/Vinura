@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddResponsesCountToPosts < ActiveRecord::Migration[5.2]
   def up
     add_column :posts, :responses_count, :integer, null: false, default: 0

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :elasticsearch do
   desc 'reindex Elasticsearch for all searchable models'
   task reindex: :environment do

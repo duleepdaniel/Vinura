@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Dashboard
   attr_reader :user, :posts, :tag, :filter
 
@@ -13,7 +15,7 @@ class Dashboard
   end
 
   def following_tags
-    user.following_tags unless user.nil?
+    user&.following_tags
   end
 
   def all_tags

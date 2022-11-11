@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module PostsHelper
   def post_length_in_minutes(body)
     min = body.split(' ').size / 250
-    if min == 0
+    if min.zero?
       'less than a minute read'
     else
       "#{min} min read"

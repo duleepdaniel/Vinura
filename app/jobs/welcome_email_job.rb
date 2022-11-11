@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WelcomeEmailJob < ActiveJob::Base
   queue_as :mailer
 

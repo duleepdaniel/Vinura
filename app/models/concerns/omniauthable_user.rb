@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OmniauthableUser
   extend ActiveSupport::Concern
 
@@ -7,7 +9,7 @@ module OmniauthableUser
     # prepending this string will not cause "email has already been taken" error.
     def self.find_or_create_from_facebook_omniauth(auth)
       user = where(provider: auth.provider, uid: auth.uid).first_or_create
-      user.remote_avatar_url = auth.info.image.gsub('http://', 'https://') + '?type=large' unless auth.info.image.nil?
+      user.remote_avatar_url = "#{auth.info.image.gsub('http://', 'https://')}?type=large" unless auth.info.image.nil?
       user.update(
         email: "#{SecureRandom.hex}#{auth.info.email}",
         password: Devise.friendly_token[0, 20],

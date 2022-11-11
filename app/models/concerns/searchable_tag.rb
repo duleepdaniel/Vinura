@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SearchableTag
   extend ActiveSupport::Concern
 
@@ -62,5 +64,5 @@ module SearchableTag
           ]
         }
       }
-    } }
+    } }.freeze
 end

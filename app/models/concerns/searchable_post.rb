@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SearchablePost
   extend ActiveSupport::Concern
 
@@ -84,5 +86,5 @@ module SearchablePost
           ]
         }
       }
-    } }
+    } }.freeze
 end

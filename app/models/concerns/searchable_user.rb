@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SearchableUser
   extend ActiveSupport::Concern
 
@@ -70,5 +72,5 @@ module SearchableUser
           ]
         }
       }
-    } }
+    } }.freeze
 end

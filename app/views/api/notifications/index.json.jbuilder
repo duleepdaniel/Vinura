@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.new_notification_count @new_notification_count
 json.next_page @notifications.next_page
 json.notifications do |json|
@@ -15,7 +17,7 @@ json.notifications do |json|
              when 'Response' then post_path(notification.notifiable.post,
                                             anchor: "response_#{notification.notifiable.id}")
              end
-    json.time_ago time_ago_in_words(notification.created_at) + ' ago'
+    json.time_ago "#{time_ago_in_words(notification.created_at)} ago"
     json.unread notification.read_at.nil?
   end
 end
