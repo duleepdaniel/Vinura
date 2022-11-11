@@ -26,6 +26,5 @@ class ResponsesController < ApplicationController
     return if current_user?(@post.user) || @post.responders.include?(@post.user)
     Notification.create(recipient: @post.user, actor: current_user, action: 'responded to your', notifiable: @post,
                         is_new: true)
-    end
   end
 end
