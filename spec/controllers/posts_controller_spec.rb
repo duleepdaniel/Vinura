@@ -75,7 +75,7 @@ RSpec.describe PostsController do
       end
 
       it 'does not allow user to delete post' do
-        expect { delete :destroy, params: { id: other_user_post.id } }.not_to change(Post.count)
+        expect { delete :destroy, params: { id: other_user_post.id } }.not_to change{Post.count}
       end
     end
   end
