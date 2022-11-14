@@ -13,13 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag vinura:latest
 
   rspec:
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     container:
-      image: ruby:2.6.5
+      image: ruby:2.6.6
 
     services:
       postgres:
