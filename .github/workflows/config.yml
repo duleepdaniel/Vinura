@@ -72,6 +72,7 @@ jobs:
         RAILS_ENV: test
         EXECJS_RUNTIME: Node
         REDIS_URL: redis://redis:6379/0
+        OPENSSL_CONF: /etc/ssl/
       run: |
         bin/rails db:create db:schema:load
         bundle exec rspec
