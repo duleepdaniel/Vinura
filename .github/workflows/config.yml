@@ -42,6 +42,10 @@ jobs:
         always-auth: true
         registry-url: https://registry.npmjs.org
 
+    - uses: borales/actions-yarn@v3.0.0
+      with:
+        cmd: install
+
     - name: Gem cache
       id: cache-bundle
       uses: actions/cache@v1
@@ -56,9 +60,6 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3 --path vendor/bundle
 
-    - name: Install yarn
-      run: npm install -g yarn
-
     # NOTE: Yarn cache doesn't seem to be working quite yet
     # - name: Get yarn cache dir
     #   id: yarn-cache-dir
@@ -70,9 +71,6 @@ jobs:
     #   with:
     #     path: ${{ steps.yarn-cache-dir.outputs.dir }}
     #     key: yarn-${{ hashFiles('**/yarn.lock') }}
-
-    - name: Yarn install
-      run: yarn install
 
     - name: Setup DB, Run tests
       env:
