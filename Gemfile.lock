@@ -124,6 +124,10 @@ GEM
     diff-lcs (1.5.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     dry-inflector (0.2.1)
     elastic-transport (8.1.0)
       faraday (< 3)
@@ -644,6 +648,7 @@ DEPENDENCIES
   dalli (~> 2.7)
   database_cleaner
   devise
+  dotenv-rails
   elasticsearch-model
   elasticsearch-rails
   factory_girl_rails (~> 4.5.0)
