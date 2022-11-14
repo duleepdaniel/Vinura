@@ -39,6 +39,10 @@ jobs:
     - uses: borales/actions-yarn@v3.0.0
       with:
         cmd: install
+    
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
 
     - name: Gem cache
       id: cache-bundle
