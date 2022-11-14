@@ -32,7 +32,7 @@ RUN yarn install
 ADD . /app
 
 # Precompile assets
-RUN RAILS_ENV=production SECRET_TOKEN=sampletoken bundle exec rake assets:precompile
+RUN RAILS_ENV=production SECRET_TOKEN=sampletoken SECRET_KEY_BASE=supersecretley bundle exec rake assets:precompile
 
 # Remove folders not needed in resulting image
 RUN rm -rf node_modules tmp/cache app/assets vendor/assets lib/assets spec
