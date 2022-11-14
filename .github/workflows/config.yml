@@ -70,7 +70,6 @@ jobs:
         PGPORT: ${{ job.services.postgres.ports[5432] }}
         RAILS_ENV: test
         EXECJS_RUNTIME: Node
-        REDIS_URL: redis://localhost:6379/0
       run: |
         bin/rails db:create db:schema:load
         bundle exec rspec
